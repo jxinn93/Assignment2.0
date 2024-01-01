@@ -173,7 +173,7 @@ public class Start extends javax.swing.JFrame {
         jLabel8.setMaximumSize(new java.awt.Dimension(1200, 944));
         jLabel8.setMinimumSize(new java.awt.Dimension(1200, 944));
         jLabel8.setPreferredSize(new java.awt.Dimension(1200, 944));
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 750));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

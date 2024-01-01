@@ -92,7 +92,7 @@ public class Trivia extends javax.swing.JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(986, 750));
         jLabel1.setMinimumSize(new java.awt.Dimension(986, 750));
         jLabel1.setPreferredSize(new java.awt.Dimension(986, 750));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 750));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

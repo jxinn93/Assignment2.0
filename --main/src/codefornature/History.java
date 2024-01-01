@@ -154,7 +154,7 @@ public class History extends javax.swing.JFrame {
         getContentPane().add(goBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 590, 180, 70));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\SCSM11\\Downloads\\trivia bg.jpg")); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 750));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 990, 750));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

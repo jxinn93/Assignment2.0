@@ -81,7 +81,7 @@ public class Merchandise extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 51, 51));
         jLabel9.setText("Merchandise");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(330, 70, 429, 75);
+        jLabel9.setBounds(330, 70, 460, 75);
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 102, 102));
