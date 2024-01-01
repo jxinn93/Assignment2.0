@@ -63,13 +63,11 @@ public class Merchandise extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(986, 750));
         setMinimumSize(new java.awt.Dimension(986, 750));
-        setPreferredSize(new java.awt.Dimension(986, 750));
         getContentPane().setLayout(null);
 
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setIcon(new javax.swing.ImageIcon("D:\\UM\\Y1\\S1\\FOP\\CodeForNature\\src\\icon\\back.jpg")); // NOI18N
+        backBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\SCSM11\\Downloads\\back.jpg")); // NOI18N
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -190,7 +188,7 @@ public class Merchandise extends javax.swing.JFrame {
         getContentPane().add(checkOutBtn);
         checkOutBtn.setBounds(850, 650, 120, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\UM\\Y1\\S1\\FOP\\CodeForNature\\src\\icon\\shop bg.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\SCSM11\\Downloads\\shop bg.jpg")); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 1000, 750);
 

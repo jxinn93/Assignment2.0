@@ -12,6 +12,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import codefornature.PasswordHashing;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 /**
@@ -19,13 +21,63 @@ import codefornature.PasswordHashing;
  * @author ACER
  */
 public class Login extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Login
-     */
+    private  userClass loggedInUser;
+    
     public Login() {
         initComponents();
+         loggedInUser = null;
+         
+         loginBtn.addActionListener(new ActionListener() {
+            
+            public void actionPerformed(ActionEvent e) {
+               loginUser(); 
+
+            }
+
+            
+        });
+    
     }
+    
+
+    private void loginUser() {
+        String email = fEmail.getText().trim();
+        String password = fPassword.getText();
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(userClass.SUrl, userClass.SUser, userClass.SPass);
+            Statement st = con.createStatement();
+
+            String query = "SELECT * FROM user WHERE email = '" + email + "' AND password = '" + password + "'";
+            ResultSet rs = st.executeQuery(query);
+
+            if (rs.next()) {
+                // Login successful
+                String username = rs.getString("username");
+                
+                int points = rs.getInt("points");
+                String regDate = rs.getString("regDate");
+                userClass loggedInUser = new userClass(email, username, password, regDate, points);
+                this.loggedInUser = loggedInUser;
+
+                JOptionPane.showMessageDialog(null, "Login successful");
+            Home HomeFrame = new Home(username, points, email, regDate);
+            HomeFrame.setVisible(true);
+            HomeFrame.pack();
+            HomeFrame.setLocationRelativeTo(null);
+            } else {
+                // Login failed
+                JOptionPane.showMessageDialog(null, "Login failed. Please check your email and password.");
+            }
+
+            con.close();
+        } catch (Exception ex) {
+            System.out.println("Error! " + ex.getMessage());
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,6 +103,7 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 500));
@@ -189,17 +242,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(Left);
         Left.setBounds(370, 0, 440, 500);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         jPanel1.getAccessibleContext().setAccessibleName("Login");
 
         pack();
@@ -218,62 +261,15 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        String email=null,password,query,passwordDB=null,usernameDB=null,regDateDB=null;
-        int currentPointsDB=0;
-        String SUrl,SUser,SPass;
-        SUrl="jdbc:mysql://localhost:3306/user";
-        SUser="root";
-        SPass="";
-        boolean found=false;
-        String hashedPasswordFromDB = null ;
+;
+     
+              
+           
         
-        
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection(SUrl,SUser,SPass);
-            Statement st=con.createStatement();
+       
             
-            if("".equals(fEmail.getText())){
-                JOptionPane.showMessageDialog(new JFrame(),"Email is required","Error",JOptionPane.ERROR_MESSAGE);
-            }
-            else if("".equals(fPassword.getText())){
-                JOptionPane.showMessageDialog(new JFrame(),"Password is required","Error",JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-                email=fEmail.getText();
-                password=fPassword.getText();
-                System.out.println("Email: " + email);
-                System.out.println("Password: " + password);
-                query="SELECT * FROM user WHERE email='"+email+"'"; 
-                ResultSet rs=st.executeQuery(query);
-                
-                while(rs.next()){
-                    hashedPasswordFromDB = rs.getString("hashedPassword");
-                    usernameDB=rs.getString("username");
-                    currentPointsDB=rs.getInt("points");
-                    regDateDB=rs.getString("regDate");
-                    found=true;
-                }
-                if(found && PasswordHashing.PasswordCheck(password, hashedPasswordFromDB )){
-                    Home HomeFrame=new Home(usernameDB,currentPointsDB,email,regDateDB);
-                    HomeFrame.setVisible(true);
-                    HomeFrame.pack();
-                    HomeFrame.setLocationRelativeTo(null);
-                    this.dispose();
-                }
-                else{
-                   JOptionPane.showMessageDialog(new JFrame(),"Incorrect email or password","Error",JOptionPane.ERROR_MESSAGE); 
-                }
-                fEmail.setText("");
-                fPassword.setText("");
-            }
-            Notification notification=new Notification(usernameDB,email);
-        }
-        catch(Exception e){
-            System.out.println("Error! "+e.getMessage());
-            e.printStackTrace();
     }//GEN-LAST:event_loginBtnActionPerformed
-    }
+    
     /**
      * @param args the command line arguments
      */
